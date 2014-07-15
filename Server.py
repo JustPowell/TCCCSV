@@ -10,5 +10,10 @@ s.listen(5)
 while True:
     c, addr = s.accept()
     print("Connection established from: ", addr)
-    c.send("Thank you for connecting")
+
+    st = input("Thank you for connecting")
+    with gzip.open(fn+".gz","wb") as f_out:
+        f_out.write(write(bytes(st, 'UTF-8')))
+    c.send(st)
+    input()
     c.close()
