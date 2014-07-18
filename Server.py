@@ -7,11 +7,13 @@ s.bind((host, port))
 
 s.listen(5)
 
+c, addr = s.accept()
+print("Connection established from: ", addr)
+
+st = "Thank you for connecting"
+
+c.send(st.encode('utf-8'))
+
 while True:
-    c, addr = s.accept()
-    print("Connection established from: ", addr)
+    print(c.recv(1024))
 
-    st = "Thank you for connecting"
-
-    c.send(st.encode('utf-8'))
-    c.close()
