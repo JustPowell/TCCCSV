@@ -11,9 +11,6 @@ while True:
     c, addr = s.accept()
     print("Connection established from: ", addr)
 
-    st = input("Thank you for connecting")
-    with gzip.open(fn+".gz","wb") as f_out:
-        f_out.write(write(bytes(st, 'UTF-8')))
-    c.send(st)
-    input()
-    c.close()
+    st = "Thank you for connecting"
+
+    c.send(st.encode('utf-8'))
